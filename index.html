@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>temp conv</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Mulish", sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #f8e7af;
+            /* background-color: #fbbdaf; */
+            display: grid;
+            place-items: center;
+        }
+
+        form {
+            background-color: #fab1a0;
+            /* background-color: #ff9f43; */
+            padding: 80px;
+            width: 50%;
+            margin: 100px auto;
+            text-align: center;
+            -webkit-box-shadow: 0 10px 6px -6px #777;
+            -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+        }
+
+        #tempCalc label {
+            font-size: 30px;
+        }
+
+        #temp {
+            border: none;
+            padding: 10px;
+            height: 40px;
+            width: 100px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        #temp_diff {
+            height: 40px;
+            border: none;
+            margin-top: 20px;
+            font-size: 15px;
+            vertical-align: top;
+        }
+
+        [type="submit"] {
+            height: 35px;
+            margin: 20px;
+            width: 100px;
+            font-size: 15px;
+            border: none;
+            background-color: black;
+            color: white;
+        }
+
+        #resultContainer {
+            font-size: 35px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="tempCalc" onsubmit="calculateTemp(); return false">
+
+        <label for="temp">Please enter the temperature you'd like to convert.</label>
+        <br /> <input type="number" name="temp" id="temp">
+
+        <select name="temp_diff" id="temp_diff">
+            <option value="cel">°Celsius</option>
+            <option value="fah">°Fahrenheit</option>
+        </select> <br />
+
+        <input type="submit" name="temp"> <br />
+        <span id="resultContainer"></span>
+
+    </form>
+
+    <!-- <script src="script.js"></script> -->
+
+    <!-- ❤ Don't Forget to Subscribe to Thapa Technical ❤
+    here is the Link: https://www.youtube.com/thapatechnical -->
+
+    <script>
+
+        const calculateTemp = () => {
+
+            const numberTemp = document.getElementById('temp').value;
+            // console.log(numberTemp);
+
+            const tempSelected = document.getElementById('temp_diff');
+            const valueTemp = temp_diff.options[tempSelected.selectedIndex].value;
+
+            const celToFah = (cel) => {
+                let fahrenheit = Math.round((cel * 9 / 5) + 32);
+                return fahrenheit;
+            }
+
+
+            const fehToCel = (fehr) => {
+                let celsius = Math.round((fehr - 32) * 5 / 9);
+                return celsius;
+            }
+
+            let result;
+
+            if (valueTemp == 'cel') {
+                result = celToFah(numberTemp);
+                document.getElementById('resultContainer').innerHTML = `= ${result}°Fahrenheit`;
+            } else {
+                result = fehToCel(numberTemp);
+                document.getElementById('resultContainer').innerHTML = `= ${result}°Celsius`;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
